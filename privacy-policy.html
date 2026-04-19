@@ -104,8 +104,10 @@
   </p>
 
   <div class="note">
-    <strong>Short version:</strong> The app reads text from driver apps on your screen to calculate profitability.
-    Everything stays on your device. Nothing is sent to any server. No personal data is collected.
+    <strong>Short version:</strong> Ride offer data (price, distance, duration) stays entirely on your device.
+    The app uses Firebase Crashlytics and Firebase Analytics to collect anonymous crash reports and basic
+    usage statistics &mdash; this diagnostic data is sent to Google&rsquo;s servers.
+    No personal data, ride earnings, or screen content is ever transmitted.
   </div>
 
   <!-- ─── 1. DATA WE PROCESS ─────────────────────────────── -->
@@ -121,8 +123,13 @@
   </ul>
   <p>
     This data is stored locally on your device (Android Room database and DataStore)
-    as your trip history. It is <strong>never transmitted to any external server</strong>,
-    never shared with third parties, and never used for advertising or analytics.
+    as your trip history. It is <strong>never transmitted to any external server</strong>
+    and never shared with third parties.
+  </p>
+  <p>
+    The app also collects <strong>anonymous crash and diagnostic data</strong> via Firebase Crashlytics
+    and basic usage statistics via Firebase Analytics. This data does not include any ride earnings,
+    screen content, or personally identifiable information. See Section 4 for details.
   </p>
 
   <!-- ─── 2. PURPOSE ────────────────────────────────────── -->
@@ -165,15 +172,43 @@
     or their passengers. It only activates when a supported driver app is in the foreground.
   </p>
 
-  <!-- ─── 4. DATA SHARING ───────────────────────────────── -->
-  <h2>4. Data Sharing</h2>
+  <!-- ─── 4. FIREBASE CRASHLYTICS & ANALYTICS ────────── -->
+  <h2>4. Firebase Crashlytics &amp; Analytics</h2>
   <p>
-    We do not share any data with third parties. There are no advertisers, no analytics providers,
-    and no backend servers. The app has no <code>INTERNET</code> permission and makes no network calls.
+    The app integrates two Firebase SDKs from Google:
   </p>
 
-  <!-- ─── 5. DATA STORAGE & DELETION ───────────────────── -->
-  <h2>5. Data Storage &amp; Deletion</h2>
+  <div class="highlight">
+    <strong>Firebase Crashlytics</strong> &mdash; collects crash and ANR reports automatically when the app
+    crashes. Each report contains: device model, Android OS version, app version, timestamp, and
+    the stack trace of the crash. No ride data, screen content, or user-identifiable information
+    is included. This data is used solely to identify and fix bugs.
+  </div>
+
+  <div class="highlight">
+    <strong>Firebase Analytics</strong> &mdash; collects anonymous usage events (e.g., which screens are
+    visited, session duration). No ride earnings, trip details, or personal information are sent.
+    This data helps us understand which features are used so we can improve the app.
+  </div>
+
+  <p>
+    Both services are provided by Google LLC and are subject to
+    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google&rsquo;s Privacy Policy</a>.
+    You can opt out of Firebase Analytics data collection via
+    <em>Android Settings &rarr; Google &rarr; Ads &rarr; Opt out of Ads Personalization</em>.
+  </p>
+
+  <!-- ─── 5. DATA SHARING ───────────────────────────────── -->
+  <h2>5. Data Sharing</h2>
+  <p>
+    Ride earnings data and screen content are <strong>never shared</strong> with any third party.
+    The only data transmitted externally is the anonymous crash and usage data described in Section 4,
+    which is sent to Google (Firebase) for diagnostic purposes.
+    We have no proprietary backend servers and do not sell any data.
+  </p>
+
+  <!-- ─── 6. DATA STORAGE & DELETION ───────────────────── -->
+  <h2>6. Data Storage &amp; Deletion</h2>
   <p>
     All trip history is stored in the app&rsquo;s private internal storage
     (Android Room database + DataStore). This data:
@@ -184,8 +219,8 @@
     <li>Can be deleted at any time via <em>Android Settings &rarr; Apps &rarr; MyProfitR &rarr; Clear Data</em></li>
   </ul>
 
-  <!-- ─── 6. SENSITIVE PERMISSIONS ─────────────────────── -->
-  <h2>6. Sensitive Permissions Used</h2>
+  <!-- ─── 7. SENSITIVE PERMISSIONS ─────────────────────── -->
+  <h2>7. Sensitive Permissions Used</h2>
   <table>
     <tr>
       <th>Permission</th>
@@ -224,22 +259,22 @@
     </tr>
   </table>
 
-  <!-- ─── 7. CHILDREN ──────────────────────────────────── -->
-  <h2>7. Children&rsquo;s Privacy</h2>
+  <!-- ─── 8. CHILDREN ──────────────────────────────────── -->
+  <h2>8. Children&rsquo;s Privacy</h2>
   <p>
     MyProfitR is intended for professional gig-economy drivers and is not directed at children
     under the age of 13. We do not knowingly collect any information from children.
   </p>
 
-  <!-- ─── 8. CHANGES ───────────────────────────────────── -->
-  <h2>8. Changes to This Policy</h2>
+  <!-- ─── 9. CHANGES ───────────────────────────────────── -->
+  <h2>9. Changes to This Policy</h2>
   <p>
     If we make material changes to this policy, we will notify users through an app update
     published on Google Play. The updated policy will always be available at this URL.
   </p>
 
-  <!-- ─── 9. CONTACT ───────────────────────────────────── -->
-  <h2>9. Contact</h2>
+  <!-- ─── 10. CONTACT ──────────────────────────────────── -->
+  <h2>10. Contact</h2>
   <p>
     If you have questions about this Privacy Policy, please contact us at:<br />
     <a href="mailto:legal@myprofitr.app">legal@myprofitr.app</a>
