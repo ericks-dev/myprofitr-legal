@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyProfitR — Privacy Policy</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #1a1a2e;
+      background: #f9f9fb;
+      padding: 0 16px 60px;
+    }
+    header {
+      background: #0d0f1a;
+      color: #00e5c8;
+      padding: 32px 20px 28px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    header h1 { font-size: 1.8rem; font-weight: 700; letter-spacing: -0.5px; }
+    header p  { color: #8a8ba0; font-size: 0.9rem; margin-top: 6px; }
+    .container { max-width: 740px; margin: 0 auto; }
+    h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0d0f1a;
+      margin: 36px 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #e0e0f0;
+    }
+    p, li { color: #333355; margin-bottom: 10px; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 6px; }
+    .badge {
+      display: inline-block;
+      background: #e8faf6;
+      color: #007a65;
+      border: 1px solid #b2e8df;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      vertical-align: middle;
+      margin-left: 6px;
+    }
+    .note {
+      background: #fff8e1;
+      border-left: 4px solid #ffc107;
+      border-radius: 4px;
+      padding: 12px 16px;
+      margin: 14px 0;
+      font-size: 0.92rem;
+      color: #5a4000;
+    }
+    .highlight {
+      background: #f0f4ff;
+      border-left: 4px solid #3d5afe;
+      border-radius: 4px;
+      padding: 12px 16px;
+      margin: 14px 0;
+      font-size: 0.92rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 0.92rem;
+    }
+    th { background: #0d0f1a; color: #e8e8f0; padding: 10px 14px; text-align: left; }
+    td { padding: 9px 14px; border-bottom: 1px solid #e0e0f0; }
+    tr:nth-child(even) td { background: #f4f4fa; }
+    footer {
+      text-align: center;
+      color: #8a8ba0;
+      font-size: 0.82rem;
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid #e0e0f0;
+    }
+    a { color: #0066cc; }
+    @media (max-width: 480px) {
+      header h1 { font-size: 1.4rem; }
+      h2 { font-size: 1.05rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>MyProfitR</h1>
+  <p>Privacy Policy &mdash; Last updated: April 2026</p>
+</header>
+
+<div class="container">
+
+  <p>
+    MyProfitR (&ldquo;the app&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;) is an Android application
+    that helps gig-economy drivers evaluate the profitability of incoming ride offers in real time.
+    This Privacy Policy explains what information the app processes, how it is used, and how it is protected.
+  </p>
+
+  <div class="note">
+    <strong>Short version:</strong> The app reads text from driver apps on your screen to calculate profitability.
+    Everything stays on your device. Nothing is sent to any server. No personal data is collected.
+  </div>
+
+  <!-- ─── 1. DATA WE PROCESS ─────────────────────────────── -->
+  <h2>1. Data Processed by the App</h2>
+  <p>
+    The app reads and temporarily processes the following data from supported driver apps
+    (Uber Driver, iFood, InDrive, Cabify, 99, and others):
+  </p>
+  <ul>
+    <li><strong>Offer fare amount</strong> &mdash; the price displayed for the ride</li>
+    <li><strong>Trip distance</strong> &mdash; in kilometres or miles</li>
+    <li><strong>Estimated duration</strong> &mdash; in minutes</li>
+  </ul>
+  <p>
+    This data is stored locally on your device (Android Room database and DataStore)
+    as your trip history. It is <strong>never transmitted to any external server</strong>,
+    never shared with third parties, and never used for advertising or analytics.
+  </p>
+
+  <!-- ─── 2. PURPOSE ────────────────────────────────────── -->
+  <h2>2. Purpose of Data Processing</h2>
+  <p>
+    Fare, distance, and duration data are used exclusively to:
+  </p>
+  <ul>
+    <li>Calculate net profit per kilometre and per hour after vehicle costs</li>
+    <li>Display an instant profitability overlay so drivers can decide whether to accept a ride</li>
+    <li>Build a local trip history for personal earnings tracking</li>
+    <li>Show progress toward daily earnings goals</li>
+  </ul>
+
+  <!-- ─── 3. ACCESSIBILITY SERVICE & SCREENSHOT ─────────── -->
+  <h2>3. Accessibility Service &amp; Ephemeral Screenshots <span class="badge">Sensitive</span></h2>
+  <p>
+    The app uses Android&rsquo;s Accessibility Service to read offer text from driver apps.
+    For most apps (InDrive, iFood, Cabify, 99) this works by traversing the standard
+    accessibility tree &mdash; no screenshot is needed.
+  </p>
+
+  <div class="highlight">
+    <strong>Uber Driver (React Native):</strong> Uber Driver is built on React Native, which does not
+    expose the offer card text through the standard Android accessibility tree. To support Uber Driver,
+    the app captures a single temporary screenshot using the
+    <code>AccessibilityService.takeScreenshot()</code> API (Android 11+) when an offer appears.
+    This screenshot is:
+    <ul style="margin-top:8px;">
+      <li>Cropped in RAM to the offer card region only</li>
+      <li>Processed locally by <strong>Google ML Kit text recognition</strong> (bundled on-device model &mdash; no network connection required)</li>
+      <li><strong>Immediately discarded</strong> from memory after text extraction</li>
+      <li>Never written to disk, never saved to gallery, never transmitted</li>
+    </ul>
+  </div>
+
+  <p>
+    The Accessibility Service does <strong>not</strong> read: messages, contacts, call logs,
+    passwords, banking credentials, browser history, or any personal information of the driver
+    or their passengers. It only activates when a supported driver app is in the foreground.
+  </p>
+
+  <!-- ─── 4. DATA SHARING ───────────────────────────────── -->
+  <h2>4. Data Sharing</h2>
+  <p>
+    We do not share any data with third parties. There are no advertisers, no analytics providers,
+    and no backend servers. The app has no <code>INTERNET</code> permission and makes no network calls.
+  </p>
+
+  <!-- ─── 5. DATA STORAGE & DELETION ───────────────────── -->
+  <h2>5. Data Storage &amp; Deletion</h2>
+  <p>
+    All trip history is stored in the app&rsquo;s private internal storage
+    (Android Room database + DataStore). This data:
+  </p>
+  <ul>
+    <li>Is accessible only to the MyProfitR app on your device</li>
+    <li>Is deleted when you uninstall the app</li>
+    <li>Can be deleted at any time via <em>Android Settings &rarr; Apps &rarr; MyProfitR &rarr; Clear Data</em></li>
+  </ul>
+
+  <!-- ─── 6. SENSITIVE PERMISSIONS ─────────────────────── -->
+  <h2>6. Sensitive Permissions Used</h2>
+  <table>
+    <tr>
+      <th>Permission</th>
+      <th>Why it is needed</th>
+    </tr>
+    <tr>
+      <td><strong>Accessibility Service</strong></td>
+      <td>Reads offer text (price, distance, duration) from driver app screens</td>
+    </tr>
+    <tr>
+      <td><strong>canTakeScreenshot</strong></td>
+      <td>
+        Captures an ephemeral screenshot for Uber Driver only (React Native does not expose
+        offer text through the accessibility tree). Processed in RAM, discarded immediately.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>SYSTEM_ALERT_WINDOW</strong></td>
+      <td>Displays the floating profitability overlay on top of driver apps</td>
+    </tr>
+    <tr>
+      <td><strong>POST_NOTIFICATIONS</strong></td>
+      <td>Sends a local notification when a high-profit offer is detected (Android 13+)</td>
+    </tr>
+    <tr>
+      <td><strong>VIBRATE</strong></td>
+      <td>Haptic feedback when a green (profitable) offer appears</td>
+    </tr>
+    <tr>
+      <td><strong>RECEIVE_BOOT_COMPLETED</strong></td>
+      <td>Updates the home-screen earnings widget after device restart</td>
+    </tr>
+    <tr>
+      <td><strong>FOREGROUND_SERVICE / SPECIAL_USE</strong></td>
+      <td>Keeps the overlay service running while you use the driver app</td>
+    </tr>
+  </table>
+
+  <!-- ─── 7. CHILDREN ──────────────────────────────────── -->
+  <h2>7. Children&rsquo;s Privacy</h2>
+  <p>
+    MyProfitR is intended for professional gig-economy drivers and is not directed at children
+    under the age of 13. We do not knowingly collect any information from children.
+  </p>
+
+  <!-- ─── 8. CHANGES ───────────────────────────────────── -->
+  <h2>8. Changes to This Policy</h2>
+  <p>
+    If we make material changes to this policy, we will notify users through an app update
+    published on Google Play. The updated policy will always be available at this URL.
+  </p>
+
+  <!-- ─── 9. CONTACT ───────────────────────────────────── -->
+  <h2>9. Contact</h2>
+  <p>
+    If you have questions about this Privacy Policy, please contact us at:<br />
+    <a href="mailto:legal@myprofitr.app">legal@myprofitr.app</a>
+  </p>
+
+  <footer>
+    &copy; 2026 MyProfitR &mdash; All rights reserved &mdash;
+    <a href="https://github.com/ericks-dev/myprofitr-legal">Source</a>
+  </footer>
+
+</div>
+</body>
+</html>
